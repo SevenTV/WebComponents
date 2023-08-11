@@ -1,0 +1,80 @@
+name: "Lint and Publish Updated Packages"
+
+on:
+    push:
+        branches:
+            - master
+
+    pull_request:
+        types:
+            - opened
+            - synchronize
+            - reopened
+            - labeled
+
+    workflow_dispatch:
+        inputs:
+            publish:
+                type: boolean
+                default: false
+                description: "Run package publisher"
+
+jobs:
+    lint:
+        name: Lint Packages
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Setup node auth and module cache
+              uses: actions/setup-node@v3
+              with:
+                  cache: 'yarn'
+                  node-version: "19.x"
+                  registry-url: "https://npm.pkg.github.com"
+
+            - name: Install Dependencies
+              run: yarn
+
+            - name: Lint all Packages
+              run: yarn lint
+    
+    publish:
+        name: Publish Updated Packages
+        runs-on: ubuntu-latest
+        permissions: 
+            packages: write
+            contents: write
+        needs: [lint]
+        concurrency:
+            group: ${{ github.workflow }}-publish-${{ github.ref }}
+            cancel-in-progress: true
+        if: ${{ (github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name == 'master') || (github.event_name == 'workflow_dispatch' && inputs.publish) }}
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+              with:
+                  # Magic number (0x7fffffff) that tells git to fetch the entire history for just this ref, actions/checkout@v3 fetches all extraneous branches with depth 0
+                  fetch-depth: 2147483647
+
+            - name: Set Git Author Credentials
+              run: |
+                git config user.name github-actions[bot]
+                git config user.email github-actions[bot]@users.noreply.github.com
+
+            - name: Setup node auth and module cache
+              uses: actions/setup-node@v3
+              with:
+                  cache: 'yarn'
+                  node-version: "19.x"
+                  registry-url: "https://npm.pkg.github.com"
+
+            - name: Install Dependencies
+              run: yarn
+
+            - name: Check for and publish updated packages
+              run: yarn ci:publisher
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

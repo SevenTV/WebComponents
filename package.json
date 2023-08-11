@@ -1,0 +1,53 @@
+{
+	"name": "seventv-webcomponents",
+	"displayName": "7TV WebComponents",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"ci:publisher": "node .scripts/ci/publisher.mjs",
+		"dev:link": "node .scripts/dev/link.mjs",
+		"dev:unlink": "node .scripts/dev/unlink.mjs",
+		"dev:link-project": "node .scripts/dev/link-project.mjs",
+		"dev:unlink-project": "node .scripts/dev/unlink-project.mjs",
+		"dev:bump-project-locks": "node .scripts/dev/bump-project-locks.mjs",
+		"clean": "rm -r */node_modules node_modules",
+		"format": "prettier -w .",
+		"lint:style": "stylelint **/*.{vue,scss,css} --ignore-path .gitignore",
+		"lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
+		"lint:style:fix": "stylelint --fix **/*.{vue,scss,css} --ignore-path .gitignore",
+		"lint:js:fix": "eslint --fix --ext .js,.vue,.ts --ignore-path .gitignore .",
+		"lint": "yarn lint:js && yarn lint:style",
+		"lint:fix": "yarn lint:js:fix && yarn lint:style:fix"
+	},
+	"workspaces": [
+		"theming",
+		"ui"
+	],
+	"dependencies": {
+		"@npmcli/promise-spawn": "^6.0.2",
+		"semver": "^7.5.4",
+		"validate-npm-package-name": "^5.0.0"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^4.2.0",
+		"@types/node": "^20.4.9",
+		"@typescript-eslint/eslint-plugin": "^6.3.0",
+		"@typescript-eslint/parser": "^6.3.0",
+		"@vue/eslint-config-prettier": "^8.0.0",
+		"@vue/eslint-config-typescript": "^11.0.2",
+		"eslint": "^8.45.0",
+		"eslint-plugin-prettier": "^5.0.0",
+		"eslint-plugin-vue": "^9.15.1",
+		"postcss": "^8.4.19",
+		"postcss-html": "^1.5.0",
+		"postcss-scss": "^4.0.6",
+		"prettier": "^3.0.0",
+		"stylelint": "^15.10.2",
+		"stylelint-config-html": "^1.1.0",
+		"stylelint-config-standard": "^34.0.0",
+		"stylelint-config-standard-scss": "^10.0.0",
+		"stylelint-config-standard-vue": "^1.0.0",
+		"stylelint-scss": "^5.0.1",
+		"typescript": "^5.1.6"
+	}
+}
