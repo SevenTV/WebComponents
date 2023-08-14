@@ -27,6 +27,8 @@ This repository provides multiple tools to make co-development of packages easie
 -   `yarn dev:link-project <path to project>`: Links all packages which the specified project depends on to the local versions in this repo, specify the `--all` option to link every package in this repo to the target project, even if they are not dependencies.
 -   `yarn dev:unlink-project <path to project>`: Unlinks all packages which were previously linked to the specified project from this repo, specify the `--skip-reinstall` parameter to avoid refetching live versions of the packages after unlinking, if this is skipped you may need to manually run `yarn install --check-files` to ensure any dangling or old links get dropped, and yarn fetches packages that are no longer linked.
 -   `yarn dev:bump-project-locks <path to project>`: Automatically bumps any dependency packages from this repo in the specified project's `yarn.lock` file, does not modify project manifest only bumps the static version the lockfile locks to, to the most recent one which now satisfies the dependency's constraints.
+-   `yarn gh-packages-key`: Append GitHub Packages read token to your local .npmrc, this allows you to fetch unresolvable packages if a package in this repository depends on a version which cannot be satisfied by the local versions at your HEAD.
+-   `yarn gh-packages-key:undo`: Removes GitHub Packages read token from your local .npmrc so you can commit the file if changes need to be made to the base .npmrc
 
 ## Workspaces
 
