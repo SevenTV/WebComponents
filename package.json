@@ -17,7 +17,9 @@
 		"lint:style:fix": "stylelint --fix **/*.{vue,scss,css} --ignore-path .gitignore",
 		"lint:js:fix": "eslint --fix --ext .js,.vue,.ts --ignore-path .gitignore .",
 		"lint": "yarn lint:js && yarn lint:style",
-		"lint:fix": "yarn lint:js:fix && yarn lint:style:fix"
+		"lint:fix": "yarn lint:js:fix && yarn lint:style:fix",
+		"gh-packages-key": "yarn gh-packages-key:undo && cat .npmrc.rev | rev >> .npmrc && git update-index --skip-worktree .npmrc",
+		"gh-packages-key:undo": "git update-index --no-skip-worktree .npmrc && git restore .npmrc"
 	},
 	"workspaces": [
 		"theming",
