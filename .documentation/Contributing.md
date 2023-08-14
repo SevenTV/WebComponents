@@ -7,6 +7,17 @@ This repo provides scripts for automatically linking and unlinking local develop
 Packages from this repository get published to Github Packages from their master branch states by an automatic CI workflow.
 Packages which are supported for third party use get identically published to NPM under the @seventv scope.
 
+When packages get published a tag will be automatically created at the commit the publisher used to make the release.
+
+## Git Cloning
+
+It is recommended to fetch this repository without tags by default, you can accomplish this by cloning the repository with `git clone --no-tags`.
+If you already cloned the repository you can disable future tag fetches by running `git config --add remote.origin.tagOpt "--no-tags"`, you will need to manually delete any tags you already fetched after this.
+
+To fetch a tag manually with this enabled you can either force fetch all tags by running `git fetch --tags` or you can fetch it directly using `git fetch origin +refs/tags/<tagname>:refs/tags/<tagname>`.
+
+If you are using VSCode, it will automatically force fetch tags regardless of git preferences, to disable this make sure the `git.pullTags` setting is disabled for this workspace. This is already specified in the repository local `.vscode/settings.json` so if you do not want this behavior and instead do want to always fetch all tags you will need to override it.
+
 ## Developer tooling
 
 This repository provides multiple tools to make co-development of packages easier.
