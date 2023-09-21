@@ -22,10 +22,7 @@
 		"gh-packages-key:undo": "git update-index --no-skip-worktree .npmrc && git restore .npmrc"
 	},
 	"workspaces": [
-		"theming",
-		"ui",
-		"util",
-		"util-vue"
+		"*/"
 	],
 	"dependencies": {
 		"@npmcli/promise-spawn": "^6.0.2",
