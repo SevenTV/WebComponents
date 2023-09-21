@@ -103,7 +103,6 @@ defineExpose({
 	input {
 		flex: 1 1 auto;
 		width: 0;
-
 		color: var(--theme-text-base);
 		padding: $padding 0;
 		background: none;

@@ -51,7 +51,7 @@ function onInput(ev: Event) {
 	height: $height;
 	width: $height;
 	margin-top: -$offset;
-	background: currentColor;
+	background: currentcolor;
 	border-radius: 50%;
 	border: none;
 	outline: none;
@@ -60,7 +60,7 @@ function onInput(ev: Event) {
 @mixin track($height, $track-height) {
 	width: 100%;
 	height: $track-height;
-	background-color: currentColor;
+	background-color: currentcolor;
 	border-radius: var(--theme-chip-radius);
 	outline: none;
 }
@@ -73,7 +73,7 @@ function onInput(ev: Event) {
 	background: transparent;
 	appearance: none;
 	cursor: pointer;
-	color: currentColor;
+	color: currentcolor;
 
 	&::-webkit-slider-thumb {
 		@include thumb($height, $track-height);
