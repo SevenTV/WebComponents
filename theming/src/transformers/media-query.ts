@@ -11,25 +11,20 @@ export function mediaQueryTransformer(fallback: Theme, ...states: [string, Theme
 		}[] = [];
 
 		for (const state of states) {
-			if (state instanceof Array) {
-				const query = window.matchMedia(state[0]);
-				const matches = ref(query.matches);
-				const callback = (ev: MediaQueryListEvent) => {
-					matches.value = ev.matches;
-				};
+			const query = window.matchMedia(state[0]);
+			const matches = ref(query.matches);
+			const callback = (ev: MediaQueryListEvent) => {
+				matches.value = ev.matches;
+			};
 
-				query.addEventListener("change", callback);
+			query.addEventListener("change", callback);
 
-				queryStates.push({
-					query,
-					matches,
-					callback,
-					result: state[1],
-				});
-			} else {
-				fallback = state;
-				break;
-			}
+			queryStates.push({
+				query,
+				matches,
+				callback,
+				result: state[1],
+			});
 		}
 
 		onScopeDispose(() => {
