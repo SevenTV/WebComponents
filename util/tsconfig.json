@@ -3,6 +3,9 @@
 	"exclude": ["src/**/__tests__/*"],
 	"compilerOptions": {
 		"composite": true,
+		"target": "ES2020",
+		"module": "ESNext",
+		"moduleResolution": "Node",
 		"baseUrl": ".",
 		"experimentalDecorators": true
 	}
