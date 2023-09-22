@@ -1,4 +1,5 @@
 export { default as UiButton } from "./components/UiButton.vue";
+export { default as UiCarousel } from "./components/UiCarousel.vue";
 export { default as UiDraggable } from "./components/UiDraggable.vue";
 export { default as UiFloating } from "./components/UiFloating.vue";
 export { default as UiLoadingBar } from "./components/UiLoadingBar.vue";
