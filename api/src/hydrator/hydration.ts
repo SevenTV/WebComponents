@@ -1,4 +1,4 @@
-import HydratedObject from "./HydratedObject";
+import HydratedObject, { HydratedObjectCloningContext } from "./HydratedObject";
 import type { HydratedObjectConstructor, HydratorSchema, HydratorSchemaFull, HydratorValue } from "../types/hydrator";
 import { isPrototypeOf } from "@seventv/util/modules/prototype";
 
@@ -141,5 +141,43 @@ export class HydrationError extends Error {
 		if (this.subError instanceof Error) msg += ": " + this.subError.message;
 
 		return msg;
+	}
+}
+
+export function cloneValue<V extends HydratorValue>(value: V, seen?: WeakMap<object, object>): V {
+	// Primitives always share identity
+	if (typeof value !== "object" || value === null) return value;
+
+	// Clones of objects that share identity, will share identity
+	seen = seen ?? new WeakMap();
+	if (seen.has(value)) return <V>seen.get(value);
+
+	if (value instanceof HydratedObject) {
+		const cls = <HydratedObjectConstructor>value.constructor;
+		const context = new HydratedObjectCloningContext(value, seen);
+
+		return <V>new cls(context);
+	}
+
+	if (value instanceof Array) {
+		const cloned: HydratorValue[] = [];
+		seen.set(value, cloned);
+
+		for (let x = 0; x < value.length; x++) {
+			cloned[x] = cloneValue(value[x], seen);
+		}
+
+		return <V>cloned;
+	} else {
+		const cloned: Record<PropertyKey, HydratorValue> = {};
+		seen.set(value, cloned);
+
+		for (const prop of Reflect.ownKeys(value)) {
+			const raw = <HydratorValue>Reflect.get(value, prop);
+
+			Reflect.set(cloned, prop, cloneValue(raw, seen));
+		}
+
+		return <V>cloned;
 	}
 }

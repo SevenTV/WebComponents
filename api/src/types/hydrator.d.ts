@@ -106,7 +106,7 @@ export type HydratorSchemaStatic = HydratorSchemaFull | HydratorSchemaShorthand;
 
 export type HydratorSchema = HydratorSchemaStatic | HydratorSchemaTransformer;
 
-export type HydratorValue<S extends HydratorSchema> = HydratorValueOptional<
+export type HydratorValue<S extends HydratorSchema = HydratorSchema> = HydratorValueOptional<
 	S,
 	S extends HydratorSchemaPrimitive
 		? HydratorValuePrimitive<S>
