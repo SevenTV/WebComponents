@@ -1,0 +1,13 @@
+{
+	"include": ["env.d.ts", "modules/**/*"],
+	"exclude": ["src/**/__tests__/*"],
+	"compilerOptions": {
+		"composite": true,
+		"strict": true,
+		"target": "ES2020",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"baseUrl": ".",
+		"experimentalDecorators": true
+	}
+}

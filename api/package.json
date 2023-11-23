@@ -1,0 +1,24 @@
+{
+	"name": "@seventv/api",
+	"version": "0.1.0",
+	"scripts": {
+		"type-check": "tsc --noEmit --composite false"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SevenTV/WebComponents.git"
+	},
+	"main": "src/index.ts",
+	"files": [
+		"src/",
+		"tsconfig.json"
+	],
+	"dependencies": {
+		"typescript": "^5.1.6",
+		"@seventv/util": "~0"
+	},
+	"devDependencies": {
+		"@tsconfig/node18": "^18.2.0",
+		"@types/node": "^20.4.9"
+	}
+}

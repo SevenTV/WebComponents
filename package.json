@@ -22,8 +22,7 @@
 		"gh-packages-key:undo": "git update-index --no-skip-worktree .npmrc && git restore .npmrc"
 	},
 	"workspaces": [
-		"theming",
-		"ui"
+		"*/"
 	],
 	"dependencies": {
 		"@npmcli/promise-spawn": "^6.0.2",
@@ -33,8 +32,8 @@
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.2.0",
 		"@types/node": "^20.4.9",
-		"@typescript-eslint/eslint-plugin": "^6.3.0",
-		"@typescript-eslint/parser": "^6.3.0",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
 		"@vue/eslint-config-prettier": "^8.0.0",
 		"@vue/eslint-config-typescript": "^11.0.2",
 		"eslint": "^8.45.0",

@@ -32,7 +32,7 @@ This repository provides multiple tools to make co-development of packages easie
 
 ## Workspaces
 
-When new packages are created they should be defined in the `workspaces` field in the root `package.json` for the repository so that npm will resolve internal dependancies correctly.
+All packages are captured by the `workspaces` field in the root `package.json` for the repository so that npm will resolve internal dependancies correctly.
 
 ## Package versioning
 
