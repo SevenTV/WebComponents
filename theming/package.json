@@ -17,7 +17,7 @@
 		"@seventv/util": "~0",
 		"@seventv/util-vue": "~0",
 		"typescript": "^5.1.6",
-		"vite": "^4.4.9",
+		"vite": "^4.4.12",
 		"vue": "^3.3.4"
 	},
 	"devDependencies": {
