@@ -1,5 +1,12 @@
 <template>
-	<svg class="seventv-logo" :color="props.color ?? ''" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 109.6 80.9">
+	<svg
+		class="seventv-logo"
+		:color="props.color ?? ''"
+		xmlns="http://www.w3.org/2000/svg"
+		width="1em"
+		height="1em"
+		viewBox="0 0 109.6 80.9"
+	>
 		<g>
 			<path
 				ref="segment1"
